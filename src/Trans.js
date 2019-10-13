@@ -84,7 +84,7 @@ export function nodesToString(mem, children, index, i18nOptions) {
   return mem;
 }
 
-function renderNodes(children, targetString, i18n, i18nOptions, combinedTOpts) {
+function renderNodes(children, targetString, i18n, i18nOptions, { count, ...combinedTOpts }) {
   if (targetString === '') return [];
 
   // check if contains tags we need to replace from html string to react nodes
@@ -109,7 +109,7 @@ function renderNodes(children, targetString, i18n, i18nOptions, combinedTOpts) {
   getData(children);
   targetString = i18n.services.interpolator.interpolate(
     targetString,
-    { ...data, ...combinedTOpts },
+    { count, ...data, ...combinedTOpts },
     i18n.language,
   );
 
